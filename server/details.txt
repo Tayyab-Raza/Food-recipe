@@ -1,0 +1,10 @@
+We used Toaster for alerts and warning templates by installing package
+
+app.use(express.json())  - by parse method which parse string value to json format
+
+installing bcrypt package for providing layer in paswword by hashing
+
+installing web tokens for tracking users and creating a dashboard by creating cookies and token
+npm i jsonwebtoken cookie-parser
+
+
