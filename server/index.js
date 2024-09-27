@@ -3,8 +3,7 @@ const dotenv = require("dotenv").config();
 const cors = require("cors");
 const { mongoose } = require("mongoose");
 const app = express();
-const cookieParser = require('cookie-parser')
-const app = express();
+const cookieParser = require('cookie-parser');
 
 //database connection
 mongoose.connect(process.env.MONGO_URL)
