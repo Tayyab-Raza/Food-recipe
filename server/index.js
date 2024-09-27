@@ -33,7 +33,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
 app.use("/", require("./routes/authRoutes"));
-app.use(cors(corsOptions));
 app.options('*', cors());
 app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade');
