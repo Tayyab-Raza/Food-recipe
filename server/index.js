@@ -5,23 +5,28 @@ const { mongoose } = require("mongoose");
 const app = express();
 const cookieParser = require('cookie-parser');
 
-const allowedOrigins = [
-  'http://localhost:3000',  // Development origin
-  'https://reciperiver.netlify.app/'  // Production origin
-];
+const corsOptions = {
+  origin: 'https://reciperiver.netlify.app/', // Your frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow all HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
+  credentials: true, // Allow cookies and other credentials
+};
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Preflight request handling;
+
+//Handle OPTIONS Request Manually 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://reciperiver.netlify.app/');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end(); // Send a 200 response for OPTIONS
+  }
+  next();
+});
+
 
 //database connection
 mongoose.connect(process.env.MONGO_URL)
@@ -33,11 +38,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
 app.use("/", require("./routes/authRoutes"));
-app.options('*', cors());
-app.use((req, res, next) => {
-  res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade');
-  next();
-});
 
 
 
