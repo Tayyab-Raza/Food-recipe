@@ -6,13 +6,6 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const app = express();
 
-//cors connection
-const corsOptions = {
-  origin: 'https://reciperiver.netlify.app/', 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, 
-};
-
 //database connection
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("Database Connected"))
@@ -22,9 +15,8 @@ mongoose.connect(process.env.MONGO_URL)
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}))
-app.use(cors(corsOptions));
 app.use("/", require("./routes/authRoutes"));
-app.options('*', cors(corsOptions));
+
 
 
 const port = process.env.PORT || 8000;
