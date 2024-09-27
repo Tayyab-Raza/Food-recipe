@@ -15,6 +15,7 @@ const {
 router.use(
   cors({
     origin: "https://reciperiver.netlify.app/",
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   })
 );
