@@ -13,7 +13,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Preflight request handling;
 
 //Handle OPTIONS Request Manually 
 app.use((req, res, next) => {
