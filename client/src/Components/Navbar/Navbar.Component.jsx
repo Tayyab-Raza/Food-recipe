@@ -28,7 +28,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     axios.get("http://localhost:8000/logout",  { withCredentials: true })
-    .then(res => {
+    .then((res) => {
       if(res.data.Status === "Success"){
         window.location.reload(true);
       }else {
