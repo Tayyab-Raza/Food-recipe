@@ -6,7 +6,10 @@ const app = express();
 const cookieParser = require('cookie-parser')
 
 //database connection
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log("Database not connected", err));
 
