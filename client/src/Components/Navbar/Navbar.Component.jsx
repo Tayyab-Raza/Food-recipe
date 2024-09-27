@@ -6,6 +6,12 @@ import axios from "axios";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+
+
+    const toggleSearchBar = () => {
+      setShowSearch(!showSearch);
+    };
 
   useEffect(() => {
     // Ensure the request includes credentials (e.g., cookies) if needed
