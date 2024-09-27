@@ -9,7 +9,6 @@ const corsOptions = {
   origin: 'https://reciperiver.netlify.app/', // Your frontend domain
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow all HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
-  credentials: true, // Allow cookies and other credentials
 };
 
 app.use(cors(corsOptions));
