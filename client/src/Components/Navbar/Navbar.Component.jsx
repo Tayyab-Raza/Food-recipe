@@ -53,14 +53,15 @@ const Navbar = () => {
           {isMenuOpen ? (
             <div className="hidden" />
           ) : (
-            <div className="mr-4 w-full flex items-center gap-3 bg-white px-3 py-1 rounded-md">
-              <BiSearch />
+             <div className="w-full flex items-center gap-1 bg-transparent">
+              <BiSearch onClick={toggleSearchBar}/>
+              {showSearch && (
               <input
                 type="text"
                 id="text"
                 placeholder="Search recipe"
-                className="w-full bg-transparent border-none focus:outline-none"
-              />
+                className="w-full bg-transparent border-none focus:outline-none bg-white px-2 py-1 rounded-lg"
+              /> )}
             </div>
           )}
           <div className="flex items-center gap-x-1">
