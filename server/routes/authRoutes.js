@@ -11,15 +11,6 @@ const {
   recipeGen
 } = require("../controllers/authController");
 
-//middleware
-router.use(
-  cors({
-    origin: "https://reciperiver.netlify.app/",
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  })
-);
-
 router.get("/", test);
 router.post("/signup", signupUser);
 router.post("/login", loginUser);
