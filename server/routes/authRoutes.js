@@ -14,7 +14,7 @@ const {
 //middleware
 router.use(
   cors({
-    origin: "https://reciperiver.netlify.app",
+    origin: "https://reciperiver.netlify.app/",
     credentials: true,
   })
 );
