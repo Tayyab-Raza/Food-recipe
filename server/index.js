@@ -6,6 +6,13 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const app = express();
 
+// Configure CORS to allow requests from your frontend
+const corsOptions = {
+  origin: 'https://reciperiver.netlify.app',  // Replace with your Netlify URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Enable credentials if needed (for cookies or authentication)
+};
+
 //database connection
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("Database Connected"))
@@ -14,7 +21,8 @@ mongoose.connect(process.env.MONGO_URL)
 //middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
+app.use(cors(corsOptions));
 app.use("/", require("./routes/authRoutes"));
 
 
