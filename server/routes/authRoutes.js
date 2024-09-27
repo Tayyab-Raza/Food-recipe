@@ -14,7 +14,7 @@ const {
 //middleware
 router.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://reciperiver.netlify.app/",
     credentials: true,
   })
 );
