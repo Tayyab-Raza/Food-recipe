@@ -5,13 +5,6 @@ const { mongoose } = require("mongoose");
 const app = express();
 const cookieParser = require('cookie-parser');
 
-const corsOptions = {
-  origin: 'https://reciperiver.netlify.app/', // Your frontend domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow all HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
-};
-
-app.use(cors(corsOptions));
 
 //Handle OPTIONS Request Manually 
 app.use((req, res, next) => {
