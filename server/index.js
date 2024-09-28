@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 
 app.use(cors({
   origin: 'https://reciperiver.netlify.app',
-    'http://localhost:3000/',
+    'http://localhost:3000',
   credentials: true, // Allow credentials (e.g., cookies) if needed
 }));
 
