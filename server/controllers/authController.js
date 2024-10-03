@@ -137,12 +137,24 @@ const verifyUser = (req, res, next) => {
 const logoutUser = (req, res, next) => {
   const token = req.cookies.token;
   if (token) {
-    res.clearCookie("token");
-    return res.json({ Status: "Success", Message: "Successfully logged out" });
+    // Clear the cookie properly, ensuring all attributes match
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true, // Only if using HTTPS
+      sameSite: "None", // Ensures cross-site cookies are handled properly
+    });
+    return res.json({
+      Status: "Success",
+      Message: "You've been successfully logged out! Hope to see you back soon!",
+    });
   } else {
-    return res.status(400).json({ Message: "No user is logged in" });
+    return res.status(400).json({
+      Status: "Error",
+      Message: "It seems no user is logged in at the moment. Try logging in first!",
+    });
   }
 };
+
 
 //recipe generator
 
