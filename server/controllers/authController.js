@@ -81,14 +81,12 @@ const loginUser = async (req, res) => {
         {},
         (err, token) => {
           if (err) throw err;
-          res
-            .cookie("token", token, {
+          res.cookie("token", token, {
               maxAge: 90 * 24 * 60 * 60 * 1000,
               httpOnly: true,
-              sameSite: "none",
+              sameSite: "None",
               secure: true,
-            })
-            .json({ user });
+            }).json({ user });
         }
       );
     }
